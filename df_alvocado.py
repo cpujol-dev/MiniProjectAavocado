@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from statsmodels.tsa.seasonal import seasonal_decompose
 
-mostrar_info = True
+mostrar_info = False
 
 df = pd.read_csv("avocado.csv")
 df_cp = df.copy()
