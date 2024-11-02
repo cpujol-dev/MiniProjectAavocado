@@ -8,9 +8,13 @@ import matplotlib.pyplot as plt
 
 def help():
     print("""Ajuda:
+    import avocado_manager as av
     av.Init()
     av.Init("avocado.csv")
-    display(av.df("df_cp")
+    av.info()
+    av.df("df")
+    display(av.df("df_cp"))
+    av.add(df,"df_name")
     """)
     
 def init(csv='avocado.csv'):
