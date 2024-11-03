@@ -26,8 +26,14 @@ def df(name):
 def add(df, df_name):
     Manager.add_df(df, df_name)
 
+def sort(df, column):
+    Manager.sort_df(df, column)
+
 def info():
     Manager.mostrar_info()
+
+def get_season():
+    return Manager.get_season
 
 class Manager:            
     debug = None
@@ -121,6 +127,12 @@ class Manager:
     @classmethod
     def add_df(cls, dataframe, name):
         cls.dataframes[name] = dataframe
+
+    @classmethod
+    def sort_df(cls, name, column):
+        #cls.dataframes[name] = dataframe
+        cls.dataframes.get(name, None).sort_values(column,ascending = False)
+        #df.sort_values('<nombreColumna>', ascending = False)
 
     @classmethod
     def load_data(cls, file_path):
@@ -231,6 +243,9 @@ class Manager:
         if cls.debug:
             print("Información general del dataset:")
             print(df.info())
+
+            print("Información estadística del dataset:")
+            print(df.describe())
 
             years = cls.get_df("years")
             print(f"\nAños: {years}")
