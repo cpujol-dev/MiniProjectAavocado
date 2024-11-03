@@ -89,7 +89,7 @@ class Manager:
         'SanDiego': 'City',
         'SanFrancisco': 'City',
         'Seattle': 'City',
-        'SouthCarolina': 'State',
+        'SouthCarolina': 'Region',
         'SouthCentral': 'GreaterRegion',
         'Southeast': 'GreaterRegion',
         'Spokane': 'City',
@@ -200,6 +200,17 @@ class Manager:
         df_date_price_volume = df_date_price_volume.reset_index()
         df_date_price_volume['Season'] = df_date_price_volume['Date'].apply(cls.get_season)
         cls.add_df(df_date_price_volume, "df_date_price_volume")
+
+        # Para seleccionar unicamente las regiones propias , descartamos Total US para la vista gráfica
+        cls.add_df(df_cp[df_cp.region != 'TotalUS'],"df_cp_cleaned")
+
+        cls.add_df(df_cp[df_cp['region_class']=='City'],"df_cp_city")
+        cls.add_df(df_cp[df_cp['region_class']=='Region'],"df_cp_region")
+        cls.add_df(df_cp[df_cp['region_class']=='GreaterRegion'],"df_cp_greater")
+        cls.add_df(df_cp[df_cp['region_class']=='TotalUS'],"df_cp_totalUS")
+
+        cls.add_df(df_cp.groupby('region')['Total Volume'].sum().nlargest(10).index,"region_largest")
+
 
     @classmethod
     def filter_data(cls, df_name, **conditions):
