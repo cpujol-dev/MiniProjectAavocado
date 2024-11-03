@@ -13,6 +13,7 @@ def help():
     av.Init("avocado.csv")
     av.info()
     av.df("df")
+    df_sorted = av.sort("df_date_price_volume", ["Date","region"], asc=[False, True])
     display(av.df("df_cp"))
     av.add(df,"df_name")
     """)
@@ -26,8 +27,8 @@ def df(name):
 def add(df, df_name):
     Manager.add_df(df, df_name)
 
-def sort(df, column):
-    Manager.sort_df(df, column)
+def sort(dataframe, columns, asc = True):
+    return Manager.sort_df(name= dataframe, columns= columns, ascending= asc)
 
 def info():
     Manager.mostrar_info()
@@ -129,10 +130,9 @@ class Manager:
         cls.dataframes[name] = dataframe
 
     @classmethod
-    def sort_df(cls, name, column):
+    def sort_df(cls, name, columns, ascending):
         #cls.dataframes[name] = dataframe
-        cls.dataframes.get(name, None).sort_values(column,ascending = False)
-        #df.sort_values('<nombreColumna>', ascending = False)
+        return cls.dataframes.get(name, None).sort_values(columns, ascending= ascending)
 
     @classmethod
     def load_data(cls, file_path):
