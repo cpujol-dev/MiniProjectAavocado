@@ -204,10 +204,13 @@ class Manager:
         # Para seleccionar unicamente las regiones propias , descartamos Total US para la vista gráfica
         cls.add_df(df_cp[df_cp.region != 'TotalUS'],"df_cp_cleaned")
 
-        cls.add_df(df_cp[df_cp['region_class']=='City'],"df_cp_city")
-        cls.add_df(df_cp[df_cp['region_class']=='Region'],"df_cp_region")
-        cls.add_df(df_cp[df_cp['region_class']=='GreaterRegion'],"df_cp_greater")
-        cls.add_df(df_cp[df_cp['region_class']=='TotalUS'],"df_cp_totalUS")
+        cls.add_df(df_cp[df_cp['region_class']=='City'],"df_city")
+        cls.add_df(df_cp[df_cp['region_class']=='Region'],"df_region")
+
+        cls.add_df(df_cp[df_cp['region_class'].isin(['City','Region'])],"df_city_region")      
+
+        cls.add_df(df_cp[df_cp['region_class']=='GreaterRegion'],"df_greater")
+        cls.add_df(df_cp[df_cp['region_class']=='TotalUS'],"df_totalUS")
 
         cls.add_df(df_cp.groupby('region')['Total Volume'].sum().nlargest(10).index,"region_largest")
 
