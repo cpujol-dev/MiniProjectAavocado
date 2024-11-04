@@ -36,6 +36,12 @@ def info():
 def get_season():
     return Manager.get_season
 
+def get_map_list(expression, my_list):
+    #numbers = [1, 2, 3, 4, 5]
+    #cuadrados = list(map(lambda x: x**2, numbers))
+    #print(cuadrados)  # [1, 4, 9, 16, 25]
+    return list(map(expression, my_list))
+
 class Manager:            
     debug = None
     dataframes = {}
