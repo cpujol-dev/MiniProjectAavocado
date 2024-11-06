@@ -187,6 +187,7 @@ class Manager:
             print("format_data: El dataset no se ha cargado. Usa el método 'load_data' primero.")
             return None
         
+        # Dataframe normalitzat
         df_cp = cls.get_df("df").copy()
         df_cp['Date'] = pd.to_datetime(df_cp['Date']) #Normalizar fecha
         df_cp = df_cp.rename(columns={df_cp.columns[0]: 'Col_0'}) # Primera columna sin titulo, potencialmente eliminable
@@ -198,7 +199,9 @@ class Manager:
         df_cp = df_cp.reset_index()
         cls.add_df(df_cp ,"df_cp")
 
-        df_c = df_cp.rename(columns={"AveragePrice": "av_price", "Total Volume": "to_volume"})
+        # Dataframe normalitzat (df_cp) amb els noms de  columnes simplificats.
+        df_c = df_cp.rename(columns={"AveragePrice": "av_price", "Total Volume": "to_volume",
+                                      "Volume_Hass_S": "vo_S", "Volume_Hass_L": "vo_L", "Volume_Hass_XL": "vo_XL"})
         cls.add_df(df_c ,"df_c")
 
         df_type = df_cp.groupby('type')['Total Volume'].count()
