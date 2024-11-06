@@ -33,6 +33,9 @@ def sort(dataframe, columns, asc = True):
 def info():
     Manager.mostrar_info()
 
+def reset():
+    Manager.dataframes = {}
+
 def get_season():
     return Manager.get_season
 
@@ -194,6 +197,9 @@ class Manager:
         # Col_0 = df_cp['Col_0'].unique()  print(f"Col_0: {Col_0}\n")
         df_cp = df_cp.reset_index()
         cls.add_df(df_cp ,"df_cp")
+
+        df_c = df_cp.rename(columns={"AveragePrice": "av_price", "Total Volume": "to_volume"})
+        cls.add_df(df_c ,"df_c")
 
         df_type = df_cp.groupby('type')['Total Volume'].count()
         df_type = df_type.reset_index()
