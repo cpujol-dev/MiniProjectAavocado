@@ -18,7 +18,7 @@ def help():
     av.add(df,"df_name")
     """)
     
-def init(csv='avocado.csv'):
+def init(csv='avocado.csv', debug=True):
     Manager(csv)
 
 def df(name):
@@ -41,6 +41,12 @@ def get_map_list(expression, my_list):
     #cuadrados = list(map(lambda x: x**2, numbers))
     #print(cuadrados)  # [1, 4, 9, 16, 25]
     return list(map(expression, my_list))
+
+def region_classification():
+    return Manager.region_classification
+
+def classification_colors():
+    return Manager.classification_colors
 
 class Manager:            
     debug = None
@@ -118,8 +124,12 @@ class Manager:
         self.debug = debug
         # Si se proporciona un archivo CSV, se intenta cargarlo
         if file_path is not None:
-            self.load_data(file_path)
-            self.format_data()
+            if self.dataframes is not None and len(self.dataframes) >0:
+                if debug:
+                    print("Debug: Res a fer, les dades ja estan carrgades als datafames.")
+            else:    
+                self.load_data(file_path)
+                self.format_data()
 
     @classmethod
     def get_df(cls, name='df'):
