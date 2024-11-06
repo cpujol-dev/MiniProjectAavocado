@@ -218,6 +218,7 @@ class Manager:
         cls.add_df(df_cp[df_cp['region_class']=='GreaterRegion'],"df_greater")
         cls.add_df(df_cp[df_cp['region_class']=='TotalUS'],"df_totalUS")
 
+        # Las top 10 regions por Total Volume
         cls.add_df(df_cp.groupby('region')['Total Volume'].sum().nlargest(10).index,"region_largest")
 
 
