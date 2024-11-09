@@ -1,10 +1,10 @@
 import os
 import inspect
-import pandas as pd
-from statsmodels.tsa.seasonal import seasonal_decompose
 import numpy as np
+import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from statsmodels.tsa.seasonal import seasonal_decompose
 
 def help():
     print("""Ajuda:
@@ -45,21 +45,15 @@ def get_map_list(expression, my_list):
     #print(cuadrados)  # [1, 4, 9, 16, 25]
     return list(map(expression, my_list))
 
-def region_classification():
-    return Manager.region_classification
-
-def classification_colors():
-    return Manager.classification_colors
-
 class Manager:            
     debug = None
     dataframes = {}
 
-    classification_colors = {'City':'green' ,'Region':'yellow' ,'GreaterRegion':'orange', 'State':'red'}
-
     get_season = lambda date: '1.Primavera' if 3 <= date.month <= 5 else ('2.Verano' if 6 <= date.month <= 8 else ('3.Otoño' if 9 <= date.month <= 11 else '4.Invierno'))
-    
-    region_classification = {
+
+    prop_classification_colors = {'City':'green' ,'Region':'yellow' ,'GreaterRegion':'orange', 'State':'red'}
+
+    prop_region_classification = {
         'Albany': 'City',
         'Atlanta': 'City',
         'BaltimoreWashington': 'Region',
@@ -115,6 +109,14 @@ class Manager:
         'West': 'GreaterRegion',
         'WestTexNewMexico': 'Region'
     }
+
+    @property
+    def classification_colors(self):
+        return self.prop_classification_colors
+    
+    @property
+    def region_classification(self):
+        return self.prop_region_classification
 
     @classmethod
     def __init__(self, file_path='avocado.csv', debug=False):
@@ -219,7 +221,7 @@ class Manager:
         dates = df_cp['Date'].unique() 
         cls.add_df(dates, "dates")
 
-        df_cp['region_class']= df_cp['region'].map(cls.region_classification)
+        df_cp['region_class']= df_cp['region'].map(cls.prop_region_classification)
 
         df_date_price_volume = df_cp[['Date', 'region', 'AveragePrice', 'Total Volume']]
         df_date_price_volume = df_date_price_volume.reset_index()
@@ -296,3 +298,7 @@ class Manager:
             #print("\nPrimeras 5 filas del dataset df_cp:")
             #df_cp = cls.get_df("df_cp")
             #print(df_cp.head())
+
+
+region_classification = Manager.prop_region_classification
+classification_colors = Manager.prop_classification_colors
