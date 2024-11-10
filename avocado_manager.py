@@ -148,7 +148,7 @@ class Manager:
 
     @classmethod
     def add_df(cls, dataframe, name):
-        cls.dataframes[name] = dataframe
+        cls.dataframes[name] = dataframe.copy()
 
     @classmethod
     def sort_df(cls, name, columns, ascending):
