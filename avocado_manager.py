@@ -242,6 +242,23 @@ class Manager:
         # Las top 10 regions por Total Volume
         cls.add_df(df_cp.groupby('region')['Total Volume'].sum().nlargest(10).index,"region_largest")
 
+        # Exemple
+        df_cp_cleaned=df_cp[df_cp.region != 'TotalUS']
+        df_cp_CA=df_cp[df_cp.region == 'California']
+        df_cp_noCA=df_cp[(df_cp.region != 'TotalUS') & (df_cp.region != "California")]
+        df_cp_noCA_conventional=df_cp[(df_cp.region != 'TotalUS') & (df_cp.region != "California") & (df_cp.type=='conventional')]
+        df_cp_noCA_organic=df_cp[(df_cp.region != 'TotalUS') & (df_cp.region != "California") & (df_cp.type=='organic')]
+        df_cp_organic=df_cp[(df_cp.region != 'TotalUS') & (df_cp.type=='organic')]
+        df_cp_conventional=df_cp[(df_cp.region != 'TotalUS') & (df_cp.type=='conventional')]
+        df_cp_Denver=df_cp[df_cp.region == 'Denver']
+        cls.add_df(df_cp_cleaned,"df_cp_cleaned")
+        cls.add_df(df_cp_CA,"df_cp_CA")
+        cls.add_df(df_cp_noCA,"df_cp_noCA")
+        cls.add_df(df_cp_noCA_conventional,"df_cp_noCA_conventional")
+        cls.add_df(df_cp_noCA_organic ,"df_cp_noCA_organic")
+        cls.add_df(df_cp_organic ,"df_cp_organic")
+        cls.add_df(df_cp_conventional ,"df_cp_conventional")
+        cls.add_df(df_cp_Denver ,"df_cp_Denver")
 
     @classmethod
     def filter_data(cls, df_name, **conditions):
@@ -267,6 +284,10 @@ class Manager:
                 print(f"Advertencia: La columna '{column}' no existe en el dataset.")
         
         return filtered_data
+
+    @classmethod
+    def obtener_regions(cls, filtro):
+        return [clave for clave, valor in cls.prop_region_classification.items() if valor == filtro]
 
     @classmethod
     def mostrar_info(cls):
@@ -299,6 +320,7 @@ class Manager:
             #df_cp = cls.get_df("df_cp")
             #print(df_cp.head())
 
-
 region_classification = Manager.prop_region_classification
 classification_colors = Manager.prop_classification_colors
+
+color_orga ='green'; color_conv ='grey'; color_total ='blue'
