@@ -199,8 +199,7 @@ class Manager:
         df_cp = df_cp.drop('Col_0', axis=1) # Parecen IDs del 0 al 52. Eliminable. 
         # Col_0 = df_cp['Col_0'].unique()  print(f"Col_0: {Col_0}\n")
         df_cp = df_cp.reset_index()
-        cls.add_df(df_cp ,"df_cp")
-
+        
         # Dataframe normalitzat (df_cp) amb els noms de  columnes simplificats.
         df_c = df_cp.rename(columns={"AveragePrice": "av_price", "Total Volume": "to_volume",
                                       "Volume_Hass_S": "vo_S", "Volume_Hass_L": "vo_L", "Volume_Hass_XL": "vo_XL"})
@@ -259,6 +258,8 @@ class Manager:
         cls.add_df(df_cp_organic ,"df_cp_organic")
         cls.add_df(df_cp_conventional ,"df_cp_conventional")
         cls.add_df(df_cp_Denver ,"df_cp_Denver")
+
+        cls.add_df(df_cp ,"df_cp")
 
     @classmethod
     def filter_data(cls, df_name, **conditions):
