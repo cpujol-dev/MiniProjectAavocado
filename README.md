@@ -247,11 +247,7 @@ Observaciones:
 > [!NOTE] Considerando Total Volume como el indicativo del Maket Size, apreciamos que para cada categoria de region, el tamaño del mercado influye sobre el precio: a mayor tamaño menor precio.
 >
 ![png](./Avocados_readme/output_36_1.png)
-> [!NOTE] 
->
 ### Separar avocados convencionales y organicos
-> [!NOTE] 
-> 
     
 ![png](./Avocados_readme/output_38_0.png)
  > [!NOTE]
