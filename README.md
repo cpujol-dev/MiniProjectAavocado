@@ -173,7 +173,7 @@ Autores: Xavi Teixido ,Cesc Pujol ,Victor Bassas
     
 ![png](./Avocados_readme/output_17_0.png)
     
-[!NOTE] 
+> [!NOTE] 
 > Comprobamos que el valor de Total Bags se corresponde a la suma de los tamaños Small+Large+XLarge. Todos los valores del histograma muestran que la diferencia es cero.
 
 # ANALISIS
