@@ -244,8 +244,9 @@ Observaciones:
 * Estamos mostrado los de tipo convencional. Que son los grupos de puntos de la parte derecha ? TotalUS y Grandes Regions.
     
 ![png](./Avocados_readme/output_36_0.png)
-> [!NOTE] Considerando Total Volume como el indicativo del Maket Size, apreciamos que para cada categoria de region, el tamaño del mercado influye sobre el precio: a mayor tamaño menor precio.
->
+> [!NOTE]
+> Considerando Total Volume como el indicativo del Maket Size, apreciamos que para cada categoria de region, el tamaño del mercado influye sobre el precio: a mayor tamaño menor precio.
+
 ![png](./Avocados_readme/output_36_1.png)
 ### Separar avocados convencionales y organicos
     
