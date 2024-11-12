@@ -1,6 +1,10 @@
 Autores: Xavi Teixido ,Cesc Pujol ,Victor Bassas
 ![jpeg](./Avocados_readme/devil_vocado.jpeg)
 
+
+
+[Cuaderno Jupyter 10.Avocados_del_diablo.ipynb](./10.Avocados_del_diablo.ipynb)
+
 # EDA
 
 ## Normalización de datos y validación
